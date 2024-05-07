@@ -1,7 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
-  
+    console.log("Também estive aqui!");
+
     const Product = sequelize.define(
-      "Product",
+      'Product',
       {
         code: {
           type: DataTypes.INTEGER,
@@ -21,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       { timestamps: false }
     );
-  
     return Product;
   };
   

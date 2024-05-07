@@ -1,15 +1,19 @@
 const dbConfig = require('./dbConfig');
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize(
+console.log("Dialeto: " + dbConfig.DIALECT);
+
+
+    const sequelize = new Sequelize(
     dbConfig.DB,
     dbConfig.USERNAME,
-    dbConfig.PASSWORD,
+    // dbConfig.PASSWORD,
     {
         host: dbConfig.HOST,
         dialect: dbConfig.DIALECT,
         port: dbConfig.PORT,
     }
+
 );
 
 sequelize
@@ -20,3 +24,5 @@ sequelize
     .catch((err) => {
         console.log("Erro ao tentar conectar: " + err);
     });
+
+module.exports = { sequelize, DataTypes };

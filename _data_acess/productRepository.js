@@ -1,3 +1,6 @@
+const tProducts = require('../_data/tProducts');
+const Sequelize = require('../_data/_config/dbContext').sequelize;
+const DataTypes = require('../_data/_config/dbContext').DataTypes;
 const IProductRepository = require('../_interface/iProductRepository');
 class ProductRepository extends IProductRepository {
     
@@ -6,10 +9,12 @@ class ProductRepository extends IProductRepository {
     }
     async addProduct(name, value) {
         try {
-            const row = await this.productModel.create({
+            await Sequelize.authenticate();
+            const row = await tProducts(Sequelize, DataTypes).create({
                 name: name,
                 value: value
             });
+            console.log("passei aqui");
             return row;
         } catch (err) {
             console.error(err);
